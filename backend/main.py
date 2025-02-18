@@ -112,6 +112,13 @@ def create_med(name: str = Form(...), price: float = Form(...)):
             "status": "error",
             "code": "400",
             "message": "Provide valid entries for Name and Price"}
+    
+    if price < 0:
+         return {
+            "status": "error",
+            "code": "400",
+            "message": "Price cannot be less than 0"}
+    
 
     try:
         with open('data.json', 'r+') as meds:
@@ -144,6 +151,12 @@ def update_med(name: str = Form(...), price: float = Form(...)):
             "code": "400",
             "message": "Provide valid entries for Name and Price"
         }
+    
+    if price < 0:
+         return {
+            "status": "error",
+            "code": "400",
+            "message": "Price cannot be less than 0"}
 
     try:
         with open('data.json', 'r+') as meds:
